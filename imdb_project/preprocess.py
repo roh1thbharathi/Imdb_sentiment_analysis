@@ -55,3 +55,13 @@ df["clean_review"] = df["review"].apply(clean_text)
 print("\nNew columns:", df.columns.tolist())
 print("Example clean_review (row 0):")
 print(df["clean_review"][0][:400])
+
+# 4. Convert sentiment text to numeric labels
+df["label"] = df["sentiment"].map({"positive": 1, "negative": 0})
+
+print("\nLabel distribution (0 = negative, 1 = positive):")
+print(df["label"].value_counts())
+
+# 5. Save cleaned dataset
+df.to_csv("data/clean_imdb.csv", index=False)
+print("\nSaved cleaned dataset to data/clean_imdb.csv")
